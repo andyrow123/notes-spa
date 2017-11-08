@@ -1,4 +1,4 @@
-describe('Note List', function(){
+describe('NoteList Model', function(){
     const noteList = new NoteList('Shopping List');
     const note = new Note('Steak');
 

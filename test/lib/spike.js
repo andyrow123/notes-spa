@@ -3,43 +3,49 @@
     var assert = {
         isTrue: function(assertionToCheck) {
             if (!assertionToCheck) {
-                console.log('%c \u2718 Assertion: Failed', 'color: red;');
+                failed({type: "Failed test", details: {assertion: assertionToCheck, expected: true}});
                 throw new Error("Failed: " + assertionToCheck + " is not truthy");
             }
             else {
-                console.log('%c \u2714 Assertion: Passed ', 'color: green;')
+                passed({type: "Passed test", details: {assertion: assertionToCheck, expected: true}});
             }
         },
         isArray: function(assertionToCheck) {
             if (assertionToCheck instanceof Array) {
-                console.log('%c \u2714 Assertion: Passed ', 'color: green;')
+                passed({type: "Passed test", details: {assertion: assertionToCheck, expected: true}});
             }
             else {
-                console.log('%c \u2718 Assertion: Failed', 'color: red;');
-                throw new Error("Failed: " + assertionToCheck + " is not an Array");
+                failed({type: "Failed test", details: {assertion: assertionToCheck, expected: true}});
+                throw new Error("Assertion Failed: " + assertionToCheck + " is not an Array");
             }
         },
         toBe: function(actual, expected) {
             if(actual !== expected) {
-                console.log('%c \u2718 Assertion: Failed', 'color: red;');
-                throw new Error('Assertion: Failed', {type: "Failed test", details: {actual: actual, expected: expected}});
+                failed({type: "Failed test", details: {actual: actual, expected: expected}});
+                throw new Error('Assertion: Failed. ' + actual + ' does not equal ' + expected + '.');
             } else {
-                console.log('%c \u2714 Assertion: Passed', 'color: green;',
-                    {type: "Passed test", details: {actual: actual, expected: expected}});
+                passed({type: "Passed test", details: {actual: actual, expected: expected}});
             }
         },
         itContains: function(list, obj) {
             for (let i = 0; i < list.length; i++) {
                 if (list[i] === obj) {
-                    console.log('%c \u2714 Assertion: Passed ', 'color: green;')
+                    passed({type: "Passed test", details: {list: list, expectedToFind: obj}});
                     return;
                 }
             }
-            console.log('%c \u2718 Assertion: Failed', 'color: red;');
-            console.log({type: "Failed test", details: {actual: list, toContain: obj}});
+            failed({type: "Failed test", details: {actual: list, toContain: obj}});
             throw new Error('Assertion: Failed! list does not contain the object');
         }
     };
+
+    var passed = function(infoObj = ''){
+        console.log('%c \u2714 Assertion: Passed ', 'color: green;', infoObj)
+    };
+
+    var failed = function(infoObj = ''){
+        console.log('%c \u2718 Assertion: Failed', 'color: red;', infoObj)
+    }
 
     exports.assert = assert;
 })(this);
