@@ -1,0 +1,25 @@
+{
+  "name": "spa",
+  "version": "0.1.0",
+  "description": "Note app made with Javascript",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andyrow123/notes-spa.git"
+  },
+  "author": "“Austin <“andyrow123@hotmail.co.uk”>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andyrow123/notes-spa/issues"
+  },
+  "homepage": "https://github.com/andyrow123/notes-spa#readme",
+  "dependencies": {
+    "http-server": "^0.10.0"
+  }
+}
