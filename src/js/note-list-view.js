@@ -1,7 +1,6 @@
 (function(exports) {
-    function NoteListView(containerId, model) {
-        this._model = model;
-        this._container = document.getElementById(containerId);
+    function NoteListView(noteListModel) {
+        this._noteListModel = noteListModel;
         this._listView = '';
         this.init();
     }
@@ -9,25 +8,23 @@
     NoteListView.prototype = {
         init: function () {
             this.createListView();
-            this.displayListView();
         },
         getModel: function () {
-            return this._model;
+            return this._noteListModel;
         },
         createListView: function () {
-            let notes = this._model.getNotes();
-            let ul = '<ul>';
+            let notes = this._noteListModel.getNotes();
 
-            notes.forEach(function(note) {
-                let li = '<li><div>' + note + '</div></li>';
-                ul = ul + li;
-            });
+            const template = `
+            <div>
+                <h1>Notes</h1>
+                <ul id="noteListView" class="person">
+                    ${notes.map(note => `<li>${ note }</li>`)}
+                </ul>
+            </div>
+            `;
 
-            ul = ul + '</ul>';
-            this._listView = ul;
-        },
-        displayListView: function () {
-          this._container.innerHTML = this._listView;
+            this._listView = template;
         },
         getListView: function () {
             return this._listView

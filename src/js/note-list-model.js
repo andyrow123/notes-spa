@@ -4,13 +4,13 @@
         this._notes = [];
     };
 
-    NoteList.prototype.getTitle = function(){
-        return this._title;
-    };
-
-    NoteList.prototype.setTitle = function(title){
-        this._title = title;
-    };
+    // NoteList.prototype.getTitle = function(){
+    //     return this._title;
+    // };
+    //
+    // NoteList.prototype.setTitle = function(title){
+    //     this._title = title;
+    // };
 
     NoteList.prototype.getNotes = function(){
         return this._notes;
