@@ -3,8 +3,8 @@ window.onload = function () {
         function NoteListModelDouble() {};
 
         NoteListModelDouble.prototype = {
-            getTitle: function() { return 'Shopping' },
-            getNotes: function() { return [new NoteModelDouble('Steak')] }
+            getNotes: function() { return ['Test note'] },
+            addNote: function () {},
         };
 
         function NoteModelDouble(text) {
@@ -12,10 +12,9 @@ window.onload = function () {
         };
 
         NoteModelDouble.prototype = {
-            // getText: function() { return 'Steak' }
         };
 
-        const noteController = new NoteController(new NoteListModelDouble(new NoteModelDouble()));
+        const noteController = new NoteController(new NoteListModelDouble());
 
         it('can be instantiated', function() {
             assert.isTrue(noteController instanceof NoteController);
@@ -28,7 +27,7 @@ window.onload = function () {
         describe('#displayList', function() {
             it('takes a NoteList model as a parameter', function() {
                 noteController.displayList()
-                assert.htmlContainsText(document.getElementById('app'), 'h2', 'Shopping');
+                assert.htmlContainsText(document.getElementById('app'), 'li', 'Test note');
             });
         });
 

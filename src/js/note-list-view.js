@@ -15,17 +15,16 @@
         createListView: function () {
             let notes = this._noteListModel.getNotes();
 
-            let ul = '<ul>';
+            const template = `
+            <div>
+                <h1>Notes</h1>
+                <ul id="noteListView" class="person">
+                    ${notes.map(note => `<li>${ note }</li>`)}
+                </ul>
+            </div>
+            `;
 
-            notes.forEach(function(note) {
-                let li = '<li><div>' + note + '</div></li>';
-                ul = ul + li;
-            });
-
-            ul = ul + '</ul>';
-
-            let container = '<div><h2>' + this._noteListModel.getTitle() + '</h2>' + ul + '</div>';
-            this._listView = container;
+            this._listView = template;
         },
         getListView: function () {
             return this._listView

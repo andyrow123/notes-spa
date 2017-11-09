@@ -13,7 +13,7 @@ window.onload = function () {
             assert.toBe(noteListView._listView, '<div><h2>Shopping</h2><ul><li><div>Steak</div></li></ul></div>');
         });
 
-        describe('#listView', function () {
+        describe('#getListView', function () {
             it('returns the html list string', function () {
                 assert.toBe(noteListView.getListView(), '<div><h2>Shopping</h2><ul><li><div>Steak</div></li></ul></div>');
             });
