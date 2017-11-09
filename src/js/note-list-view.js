@@ -1,7 +1,6 @@
 (function(exports) {
-    function NoteListView(containerId, model) {
-        this._model = model;
-        this._container = document.getElementById(containerId);
+    function NoteListView(noteListModel) {
+        this._noteListModel = noteListModel;
         this._listView = '';
         this.init();
     }
@@ -9,13 +8,13 @@
     NoteListView.prototype = {
         init: function () {
             this.createListView();
-            this.displayListView();
         },
         getModel: function () {
-            return this._model;
+            return this._noteListModel;
         },
         createListView: function () {
-            let notes = this._model.getNotes();
+            let notes = this._noteListModel.getNotes();
+
             let ul = '<ul>';
 
             notes.forEach(function(note) {
@@ -24,10 +23,9 @@
             });
 
             ul = ul + '</ul>';
-            this._listView = ul;
-        },
-        displayListView: function () {
-          this._container.innerHTML = this._listView;
+
+            let container = '<div><h2>' + this._noteListModel.getTitle() + '</h2>' + ul + '</div>';
+            this._listView = container;
         },
         getListView: function () {
             return this._listView

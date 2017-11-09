@@ -11,10 +11,16 @@ describe('NoteList Model', function(){
     });
 
     it('initializes NoteList with notes array', function() {
+        let noteList = new NoteList('Shopping List');
         assert.isArray(noteList.getNotes());
     });
 
-    describe('Adding Notes', function(){
+    it('initializes Notes array empty', function() {
+        let noteList = new NoteList('Shopping List');
+        assert.isEmpty(noteList.getNotes());
+    });
+
+    describe('#addNote', function(){
         it('can add a note to the notes array', function(){
             noteList.addNote(note);
             assert.itContains(noteList.getNotes(), note)

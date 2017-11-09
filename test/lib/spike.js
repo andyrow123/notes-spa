@@ -1,3 +1,16 @@
+// /**
+//  * Expose `Spike`.
+//  */
+//
+// exports = module.exports = Spike;
+//
+// function Spike(options) {
+//     options = options || {};
+//     this.files = [];
+//     this.options = options;
+// }
+
+
 (function(exports){
 
     var assert = {
@@ -19,6 +32,15 @@
                 throw new Error("Assertion Failed: " + assertionToCheck + " is not an Array");
             }
         },
+        isEmpty: function(assertionToCheck) {
+            if (assertionToCheck.length === 0 || !assertionToCheck) {
+                passed({type: "Passed test", details: {assertion: assertionToCheck, expected: 'empty'}});
+            }
+            else {
+                failed({type: "Failed test", details: {assertion: assertionToCheck, expected: 'empty'}});
+                throw new Error("Assertion Failed: " + assertionToCheck + " is not empty");
+            }
+        },
         toBe: function(actual, expected) {
             if(actual !== expected) {
                 failed({type: "Failed test", details: {actual: actual, expected: expected}});
@@ -36,6 +58,21 @@
             }
             failed({type: "Failed test", details: {actual: list, toContain: obj}});
             throw new Error('Assertion: Failed! list does not contain the object');
+        },
+        htmlContainsText: function(html, htmlTag, text) {
+                let elements = html.getElementsByTagName(htmlTag);
+                var foundText = false;
+                elements.forEach(function(element){
+                    element.contains(text)
+                })
+                if (elements.contains(text)) {
+                    passed({type: "Passed test", details: {list: html.childNodes[i], expectedToFind: text}});
+                    return;
+                }
+                else {
+                    failed({type: "Failed test", details: {actual: html, toContain: text}});
+                    throw new Error('Assertion: Failed! list does not contain the object');
+                }
         }
     };
 

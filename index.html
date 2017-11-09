@@ -8,21 +8,20 @@
     <script src="src/js/note-model.js" type="text/javascript"></script>
     <script src="src/js/note-list-model.js" type="text/javascript"></script>
     <script src="src/js/note-list-view.js" type="text/javascript"></script>
-
+    <script src="src/js/note-controller.js" type="text/javascript"></script>
   </head>
   <body>
     <div id="app">
-      <div id="listContainer"></div>
       <div class="app-slider"></div>
     </div>
 
     <script>
         // self executing function here
         (function() {
-            let noteList = new NoteList('')
-            let noteListView = new NoteListView('listContainer', noteList)
-
-
+            let noteList = new NoteList('Test List')
+            noteList.addNote('Test note')
+            let noteController = new NoteController(noteList)
+            noteController.displayList()
         })();
     </script>
   </body>
